@@ -1,21 +1,18 @@
 import os
-from pathlib import Path
 import dj_database_url
+from pathlib import Path
 from dotenv import load_dotenv
 
-# Load .env file if it exists (for local development)
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# On Vercel, this will be pulled from Environment Variables
+# Security: Pull from Vercel environment variables, fallback to local for dev
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-(3u4(q6egvu^#srfwm^axt8w9=+4q!i&$k9ew%91y84c5huwyi')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-# Allow Vercel domains and local development
+# Essential for Vercel deployment
 ALLOWED_HOSTS = ['.vercel.app', 'now.sh', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
@@ -35,7 +32,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Essential for serving CSS on Vercel
+    'whitenoise.middleware.WhiteNoiseMiddleware', # For serving static files on Vercel
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -64,9 +61,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'finance_tracker.wsgi.application'
 
-# DATABASE CONFIGURATION
-# 
-# If POSTGRES_URL is found (Vercel/Neon), use it. Otherwise, use SQLite.
+# Database: Uses Neon Postgres on Vercel, SQLite locally
 DATABASES = {
     'default': dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
@@ -86,26 +81,18 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# STATIC FILES (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise compression and caching
+# WhiteNoise storage for optimized CSS/JS delivery
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
 
-# SECURITY SETTINGS
-SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_HTTPONLY = True
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = 'DENY'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CRISPY FORMS SETTINGS
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

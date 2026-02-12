@@ -30,17 +30,15 @@
         <form method="post" class="auth-form">
             {% csrf_token %}
             
-            {% for field in form %}
-                <div class="form-group register-field-fix">
-                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        <span class="form-error">{{ field.errors.0 }}</span>
-                    {% endif %}
-                </div>
-            {% endfor %}
+            <div class="form-spacing">
+                {% for field in form %}
+                    {% include 'atomic/molecules/form_field.html' with field=field label=field.label %}
+                {% endfor %}
+            </div>
 
-            {% include 'atomic/atoms/button.html' with text='Register' type='primary' block=True %}
+            <div class="button-wrapper" style="margin-top: 1.5rem;">
+                {% include 'atomic/atoms/button.html' with text='Register' type='primary' block=True %}
+            </div>
         </form>
 
         <div class="auth-footer">
@@ -50,14 +48,53 @@
 </div>
 
 <style>
-    .register-field-fix input {
+    /* Critical fix: Stops the card from becoming massive on large screens */
+    .auth-card {
+        width: 95%;
+        max-width: 450px; /* Slightly wider than login for extra form info */
+        margin: 0 auto;
+        z-index: 10;
+        position: relative;
+    }
+
+    .form-spacing > * + * {
+        margin-top: 1rem;
+    }
+
+    /* Force pink aesthetic on Django's auto-generated fields */
+    .auth-form input,
+    .auth-form select {
         background-color: #ffffff !important;
         border: 2px solid #ffb6c1 !important;
-        color: #333 !important;
+        color: #333333 !important;
+        display: block !important;
         width: 100% !important;
-        padding: 0.8rem 1rem !important;
         border-radius: 12px !important;
-        margin-bottom: 1rem;
+        padding: 0.8rem 1rem !important;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .auth-form input:focus {
+        border-color: #ff69b4 !important;
+        box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.2);
+        outline: none;
+    }
+
+    /* Styling for the help text often found in registration (e.g., password requirements) */
+    .form-help, .helptext {
+        display: block;
+        font-size: 0.75rem;
+        color: #888;
+        margin-top: 0.25rem;
+        padding: 0 0.5rem;
+    }
+
+    /* Error handling style */
+    .form-error {
+        color: #ff4d4d;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        display: block;
     }
 </style>
 {% endblock %}

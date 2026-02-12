@@ -3,6 +3,7 @@ import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
 
+# Load environment variables from .env file
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,6 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security: Pull from Vercel environment variables, fallback to local for dev
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-(3u4(q6egvu^#srfwm^axt8w9=+4q!i&$k9ew%91y84c5huwyi')
 
+# DEBUG should be False in production (Vercel)
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 # Essential for Vercel deployment
@@ -32,7 +34,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Essential for Vercel
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Essential for serving CSS on Vercel
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,12 +83,18 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files configuration
+# --- STATIC FILES CONFIGURATION ---
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'tracker', 'static'),]
+
+# This points to the static folder inside your 'tracker' app as seen in your structure
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'tracker', 'static'),
+]
+
+# This is where Django will 'collect' all files for production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Optimized for Vercel: This allows WhiteNoise to serve files even with DEBUG=False
+# Optimized for Vercel: WhiteNoise serves compressed files with unique names
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -95,6 +103,7 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+# ----------------------------------
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboard'

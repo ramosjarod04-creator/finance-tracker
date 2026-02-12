@@ -1,0 +1,92 @@
+﻿[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-11-03T06:02:18.682Z",
+    "user": 2,
+    "content_type": null,
+    "object_id": "1",
+    "object_repr": "Jarod",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$e3AVXKyjo4aUAeZal6Yqjq$l/rp9My+bwFpqDezmJ+gksW4kp5rw9206uFNNIMyPHA=",
+    "last_login": "2026-02-12T14:42:46.132Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-03T05:46:58.134Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$j1Fg07lQW2ue9f9SGj7PH6$MOG7xcFIEG/ngPr3zyK5vzZPymk9EgKF/KQcZ/F0Sys=",
+    "last_login": "2025-11-03T06:03:03.980Z",
+    "is_superuser": false,
+    "username": "jarod",
+    "first_name": "",
+    "last_name": "",
+    "email": "jarod@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-03T06:03:03.552Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$3lWwmtwyz3JwFPGYgPStTL$9foN+TmXO3tkEFcJ2FNptg5gflld3PraXMT18EbsOU0=",
+    "last_login": "2026-02-12T14:27:13.885Z",
+    "is_superuser": false,
+    "username": "jarodjay",
+    "first_name": "",
+    "last_name": "",
+    "email": "ramosjarod04@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-02-11T10:02:53.989Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3eerrpncf1oixqjy6mgiuov12q68dsyt",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlkb_-KlpM8ZLNu7xgFkS_lUiLujSCmgfTPz3iLEfathX3kJM4mr0OLyu6WYn9wOQI_Y7l3m3rZlTvJQ5ElXOXXi1-10_w5qXOtRe6N8KWAAR0XeeU7oNFi2GhVwIQKrISmDOGCilL3W4wAuWhuxsBGfL8SYNyU:1vFneh:5VqQfXNHRBAThfrFbVnvLm9GTqLksWimHvIrWcafH1E",
+    "expire_date": "2025-11-17T06:03:03.983Z"
+  }
+},
+{
+  "model": "tracker.transaction",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "title": "ewan ko ba",
+    "amount": "5000.00",
+    "transaction_type": "income",
+    "category": "salary",
+    "description": "wawayu",
+    "date": "2025-11-03",
+    "created_at": "2025-11-03T06:03:38.641Z",
+    "updated_at": "2025-11-03T06:03:38.641Z"
+  }
+}
+]

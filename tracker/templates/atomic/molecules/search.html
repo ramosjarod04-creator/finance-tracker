@@ -1,0 +1,23 @@
+<div class="search-container-molecule">
+    <div class="search-icon">🔍</div>
+    <input 
+        type="text" 
+        name="search" 
+        placeholder="{{ placeholder|default:'Search...' }}" 
+        class="search-input-field" 
+        value="{{ value|default:'' }}"
+    >
+</div>
+
+<style>
+    .search-container-molecule { position: relative; width: 100%; max-width: 400px; display: flex; align-items: center; }
+    .search-icon { position: absolute; left: 15px; color: #ff85a2; z-index: 5; }
+    .search-input-field {
+        width: 100% !important;
+        padding: 0.8rem 1rem 0.8rem 2.8rem !important;
+        background-color: #ffffff !important;
+        border: 2px solid #ffb6c1 !important;
+        border-radius: 50px !important;
+        color: #333 !important;
+    }
+</style>

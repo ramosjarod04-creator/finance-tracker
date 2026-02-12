@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Finance Tracker{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-background">
+        <div class="blur-circle blur-circle-1"></div>
+        <div class="blur-circle blur-circle-2"></div>
+        <div class="blur-circle blur-circle-3"></div>
+    </div>
+    
+    <div class="auth-card">
+        <div class="auth-header">
+            <div class="auth-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            <h1>Welcome Back</h1>
+            <p>Login to manage your finances</p>
+        </div>
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_username" class="form-label">Username</label>
+                <input type="text" name="username" id="id_username" class="form-input visibility-fix" required autofocus>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_password" class="form-label">Password</label>
+                <input type="password" name="password" id="id_password" class="form-input visibility-fix" required>
+            </div>
+
+            {% include 'atomic/atoms/button.html' with text='Login' type='primary' block=True %}
+        </form>
+
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="{% url 'register' %}" class="link">Register here</a></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .visibility-fix {
+        background-color: #ffffff !important;
+        border: 2px solid #ffb6c1 !important;
+        color: #333 !important;
+        display: block !important;
+        width: 100% !important;
+        border-radius: 12px !important;
+        padding: 0.8rem 1rem !important;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,36 @@
+<div class="form-group-molecule">
+    <label for="{{ field.id_for_label }}" class="custom-label">{{ field.label }}</label>
+    
+    <div class="input-wrapper">
+        {{ field }}
+    </div>
+
+    {% if field.errors %}
+        {% for error in field.errors %}
+        <span class="custom-error">✕ {{ error }}</span>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<style>
+    .form-group-molecule { margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .custom-label { font-family: 'Poppins', sans-serif; font-weight: 600; color: #ff758c; font-size: 0.9rem; }
+
+    .form-group-molecule input, 
+    .form-group-molecule select, 
+    .form-group-molecule textarea {
+        width: 100% !important;
+        padding: 0.8rem 1rem !important;
+        /* Forced Visibility */
+        background-color: #ffffff !important;
+        border: 2px solid #ffb6c1 !important; 
+        border-radius: 12px !important;
+        color: #333 !important;
+        display: block !important;
+    }
+
+    .form-group-molecule input:focus {
+        border-color: #ff4d6d !important;
+        box-shadow: 0 0 10px rgba(255, 133, 162, 0.2) !important;
+    }
+</style>

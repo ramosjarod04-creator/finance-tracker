@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Transaction - Finance Tracker{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="confirm-container">
+        <div class="confirm-card">
+            <h1>Confirm Delete</h1>
+            <p>Are you sure you want to delete this transaction?</p>
+            
+            <div class="transaction-preview">
+                <h3>{{ transaction.title }}</h3>
+                <p>Amount: ${{ transaction.amount|floatformat:2 }}</p>
+                <p>Type: {{ transaction.get_transaction_type_display }}</p>
+                <p>Date: {{ transaction.date }}</p>
+            </div>
+
+            <form method="post" class="confirm-form">
+                {% csrf_token %}
+                <div class="form-actions">
+                    {% include 'atomic/atoms/button.html' with text='Yes, Delete' type='danger' button_type='submit' %}
+                    <a href="{% url 'transaction_list' %}" class="btn btn-outline">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

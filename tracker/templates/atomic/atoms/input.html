@@ -1,0 +1,96 @@
+{% comment %}
+Usage: {% include 'atomic/atoms/input.html' with name='username' label='Username' type='text' %}
+{% endcomment %}
+
+<div class="custom-input-group">
+    {% if label %}
+    <label for="{{ name }}" class="custom-input-label">{{ label }}</label>
+    {% endif %}
+    
+    <input 
+        type="{{ type|default:'text' }}" 
+        id="{{ name }}" 
+        name="{{ name }}" 
+        class="custom-input-field" 
+        value="{{ value|default:'' }}"
+        {% if required %}required{% endif %}
+        {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+        {% if autofocus %}autofocus{% endif %}
+    >
+    
+    {% if error %}
+    <span class="custom-input-error">✕ {{ error }}</span>
+    {% endif %}
+    
+    {% if help_text %}
+    <small class="custom-input-help">{{ help_text }}</small>
+    {% endif %}
+</div>
+
+<style>
+    .custom-input-group {
+        margin-bottom: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .custom-input-label {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: #ff758c; /* Your theme pink */
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .custom-input-field {
+        width: 100%;
+        padding: 0.8rem 1.2rem;
+        border: 2px solid #ffe5ec;
+        border-radius: 12px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        color: #444;
+        background: #fff;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .custom-input-field::placeholder {
+        color: #ccc;
+    }
+
+    .custom-input-field:focus {
+        outline: none;
+        border-color: #ff85a2;
+        box-shadow: 0 0 12px rgba(255, 133, 162, 0.2);
+        background: white;
+    }
+
+    .custom-input-error {
+        color: #ff4d6d;
+        font-size: 0.75rem;
+        font-weight: 500;
+        margin-top: 0.4rem;
+    }
+
+    .custom-input-help {
+        color: #aaa;
+        font-size: 0.7rem;
+        margin-top: 0.3rem;
+    }
+
+    /* Professional Touch: Change label color when input is focused */
+    .custom-input-group:focus-within .custom-input-label {
+        color: #ff4d6d;
+    }
+
+    /* Mobile Consistency (Ctrl+Shift+M) */
+    @media (max-width: 480px) {
+        .custom-input-field {
+            padding: 0.7rem 1rem;
+            font-size: 0.95rem;
+        }
+    }
+</style>

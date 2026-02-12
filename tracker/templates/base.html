@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Finance Tracker{% endblock %}</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --soft-pink: #ffe5ec;
+            --border-pink: #ffb6c1; /* High visibility border */
+            --bg-gradient: linear-gradient(135deg, #fce4ec 0%, #f1f2f6 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            margin: 0;
+            color: #444;
+        }
+
+        /* Custom scrollbar to match pink theme */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ff85a2; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff4d6d; }
+
+        /* Global Input Visibility Overrides */
+        input, select, textarea {
+            background-color: #ffffff !important;
+            border: 2px solid var(--border-pink) !important;
+            color: #333 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-pink) !important;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(255, 77, 109, 0.1) !important;
+        }
+
+        main {
+            min-height: calc(100vh - 160px); /* Keeps footer at bottom */
+        }
+    </style>
+</head>
+<body>
+    {% block navbar %}
+        {% include 'atomic/organisms/header.html' %}
+    {% endblock %}
+    
+    {% include 'atomic/organisms/messages.html' %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% block footer %}
+    <footer style="text-align: center; padding: 2.5rem 1rem; color: #ff85a2; font-size: 0.85rem; font-weight: 500;">
+        &copy; 2026 Finance Tracker • Track Your Wealth with Style 💖
+    </footer>
+    {% endblock %}
+
+    <script>
+        // Auto-hide messages after 5 seconds
+        setTimeout(function() {
+            const messages = document.querySelectorAll('.messages-container');
+            messages.forEach(msg => msg.style.display = 'none');
+        }, 5000);
+    </script>
+</body>
+</html>

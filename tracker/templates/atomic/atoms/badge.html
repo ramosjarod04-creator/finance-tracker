@@ -1,0 +1,8 @@
+{% comment %}
+Usage: {% include 'atomic/atoms/badge.html' with text='Income' variant='income' %}
+Variants: default, income, expense
+{% endcomment %}
+
+<span class="badge {% if variant %}badge-{{ variant }}{% endif %}">
+    {{ text }}
+</span>

@@ -1,0 +1,60 @@
+{% comment %}
+Usage: {% include 'atomic/molecules/transaction_item.html' with transaction=transaction %}
+{% endcomment %}
+
+<div class="transaction-item" onmouseover="this.style.background='#fff9fa'" onmouseout="this.style.background='transparent'">
+    <div class="transaction-info">
+        <h4 class="transaction-title">{{ transaction.title }}</h4>
+        <span class="transaction-meta">{{ transaction.category }} • {{ transaction.date }}</span>
+    </div>
+    <div class="transaction-amount amount-{{ transaction.transaction_type }}">
+        {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %}
+        ₱{{ transaction.amount|floatformat:2 }}
+    </div>
+</div>
+
+<style>
+    .transaction-item {
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 1.2rem; 
+        border-bottom: 1px solid #ffe5ec; 
+        transition: background 0.3s;
+    }
+
+    .transaction-title {
+        margin: 0 0 0.3rem 0; 
+        color: #444; 
+        font-weight: 600;
+    }
+
+    .transaction-meta {
+        font-size: 0.8rem; 
+        color: #aaa;
+    }
+
+    .transaction-amount {
+        font-weight: 700; 
+        font-size: 1.1rem;
+    }
+
+    /* Professional Colors based on transaction type */
+    .amount-income {
+        color: #2ecc71; /* Professional Green */
+    }
+
+    .amount-expense {
+        color: #ff4d6d; /* Your Pink/Red Theme */
+    }
+
+    /* Fix for Mobile (Ctrl+Shift+M) */
+    @media (max-width: 480px) {
+        .transaction-item {
+            padding: 1rem;
+        }
+        .transaction-amount {
+            font-size: 1rem;
+        }
+    }
+</style>

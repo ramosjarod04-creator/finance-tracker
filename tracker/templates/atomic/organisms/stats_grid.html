@@ -1,0 +1,6 @@
+<div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    {% include 'atomic/molecules/stat_card.html' with title='Total Income' value=total_income icon='💵' variant='income' %}
+    {% include 'atomic/molecules/stat_card.html' with title='Total Expense' value=total_expense icon='💸' variant='expense' %}
+    {% include 'atomic/molecules/stat_card.html' with title='Balance' value=balance icon='💰' variant='balance' %}
+    {% include 'atomic/molecules/stat_card.html' with title='Transactions' value=transaction_count icon='📊' variant='transactions' %}
+</div>

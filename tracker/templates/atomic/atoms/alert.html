@@ -1,0 +1,9 @@
+{% comment %}
+Usage: {% include 'atomic/atoms/alert.html' with message='Success!' type='success' %}
+Types: success, error, info, warning
+{% endcomment %}
+
+<div class="alert alert-{{ type|default:'info' }}">
+    <span>{{ message }}</span>
+    <button class="close-btn" onclick="this.parentElement.remove()">×</button>
+</div>

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}{{ action }} Transaction{% endblock %}
+
+{% block content %}
+<div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
+    <div class="login-container" style="width: 100%; max-width: 500px; background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(255, 117, 140, 0.15); border: 1px solid rgba(255, 182, 193, 0.3);">
+        <div class="form-header" style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="color: #ff4d6d; margin: 0;">{{ action }} Transaction</h1>
+            <p style="color: #888; font-size: 0.9rem;">Keep your records up to date</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.6rem; color: #ff758c; font-weight: 600; font-size: 0.9rem;">{{ field.label }}</label>
+                <div class="input-container">
+                    {{ field }}
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="form-actions" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                {% include 'atomic/atoms/button.html' with text='Save Transaction' type='primary' button_type='submit' block=True %}
+                <a href="{% url 'transaction_list' %}" style="text-align: center; color: #aaa; text-decoration: none; font-size: 0.9rem;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Styling Django Form Widgets to match your Login design */
+    input, select, textarea {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 2px solid #ffe5ec;
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.3s;
+    }
+    input:focus, select:focus {
+        outline: none;
+        border-color: #ff85a2;
+        box-shadow: 0 0 8px rgba(255, 133, 162, 0.2);
+    }
+</style>
+{% endblock %}

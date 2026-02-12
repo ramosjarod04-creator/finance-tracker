@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - Finance Tracker{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 2rem 20px;">
+    <div class="page-header" style="margin-bottom: 2rem;">
+        <h1 style="color: #ff4d6d; margin: 0; font-weight: 800;">Dashboard</h1>
+        <p style="color: #888; margin-top: 0.5rem;">Welcome back, <span style="color: #ff758c; font-weight: 600;">{{ user.username }}</span>!</p>
+    </div>
+
+    {% include 'atomic/organisms/stats_grid.html' with total_income=total_income total_expense=total_expense balance=balance transaction_count=transaction_count %}
+
+    <div class="section login-container" style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border: 1px solid rgba(255, 182, 193, 0.3);">
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 2px solid #fff0f3; padding-bottom: 1rem;">
+            <h2 style="color: #ff758c; margin: 0;">Recent Transactions</h2>
+            <a href="{% url 'transaction_list' %}" style="color: #ff85a2; text-decoration: none; font-weight: 600; font-size: 0.9rem;">View All →</a>
+        </div>
+
+        {% if recent_transactions %}
+        <div class="transaction-list">
+            {% for transaction in recent_transactions %}
+                {% include 'atomic/molecules/transaction_item.html' with transaction=transaction %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state" style="text-align: center; padding: 3rem 0;">
+            <p style="color: #aaa;">No transactions yet. Start your journey!</p>
+            <a href="{% url 'transaction_create' %}" style="color: #ff758c; font-weight: 600;">+ Add your first transaction</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

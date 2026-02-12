@@ -1,0 +1,40 @@
+<div class="filter-card-wrapper">
+    <form method="get" class="filter-flex-container">
+        <div class="filter-item-search">
+            {% include 'atomic/molecules/search.html' with value=search %}
+        </div>
+        
+        <div class="filter-group-selects">
+            <select name="type" class="custom-select-pink">
+                <option value="">All Types</option>
+                <option value="income" {% if transaction_type == 'income' %}selected{% endif %}>Income</option>
+                <option value="expense" {% if transaction_type == 'expense' %}selected{% endif %}>Expense</option>
+            </select>
+
+            <select name="category" class="custom-select-pink">
+                <option value="">All Categories</option>
+                <option value="salary">Salary</option>
+                <option value="food">Food</option>
+                <option value="transport">Transport</option>
+            </select>
+        </div>
+
+        <div class="filter-actions">
+            {% include 'atomic/atoms/button.html' with text='Filter' type='primary' button_type='submit' icon=False %}
+            <a href="{% url 'transaction_list' %}" class="btn-clear-link">Clear</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    .filter-card-wrapper { background: white; padding: 1.2rem; border-radius: 20px; border: 1px solid #ffe5ec; margin-bottom: 2rem; }
+    .filter-flex-container { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .custom-select-pink {
+        background-color: #ffffff !important;
+        border: 2px solid #ffb6c1 !important;
+        padding: 0.8rem !important;
+        border-radius: 12px !important;
+        color: #333 !important;
+        min-width: 150px;
+    }
+</style>

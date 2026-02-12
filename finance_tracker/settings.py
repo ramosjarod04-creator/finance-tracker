@@ -83,7 +83,7 @@ USE_TZ = True
 
 # Static files configuration
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'tracker', 'static'),]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Optimized for Vercel: This allows WhiteNoise to serve files even with DEBUG=False

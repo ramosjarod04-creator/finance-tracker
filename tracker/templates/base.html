@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Finance Tracker{% endblock %}</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -14,7 +16,7 @@
         :root {
             --primary-pink: #ff4d6d;
             --soft-pink: #ffe5ec;
-            --border-pink: #ffb6c1; /* High visibility border */
+            --border-pink: #ffb6c1; 
             --bg-gradient: linear-gradient(135deg, #fce4ec 0%, #f1f2f6 100%);
         }
 
@@ -26,29 +28,25 @@
             color: #444;
         }
 
-        /* Custom scrollbar to match pink theme */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #ff85a2; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ff4d6d; }
-
-        /* Global Input Visibility Overrides */
+        /* Input Visibility Overrides */
         input, select, textarea {
             background-color: #ffffff !important;
             border: 2px solid var(--border-pink) !important;
             color: #333 !important;
             opacity: 1 !important;
             visibility: visible !important;
-        }
-
-        input:focus, select:focus {
-            border-color: var(--primary-pink) !important;
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(255, 77, 109, 0.1) !important;
+            border-radius: 12px;
+            padding: 10px;
         }
 
         main {
-            min-height: calc(100vh - 160px); /* Keeps footer at bottom */
+            min-height: calc(100vh - 160px);
+        }
+
+        /* Fix for massive icons on Vercel when CSS fails */
+        svg, img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -71,7 +69,6 @@
     {% endblock %}
 
     <script>
-        // Auto-hide messages after 5 seconds
         setTimeout(function() {
             const messages = document.querySelectorAll('.messages-container');
             messages.forEach(msg => msg.style.display = 'none');
